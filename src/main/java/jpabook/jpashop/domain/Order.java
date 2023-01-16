@@ -16,14 +16,15 @@ public class Order {
     @Column(name = "order_id")
     private Long id;
 
-    @ManyToOne
+    //XToOne 인 경우에 fetch 설정을 LAZY로 해주어야 함.
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id") //맵핑할 컬럼
     private Member member;
 
     @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "delivery_id")
     private Delivery delivery;
 
